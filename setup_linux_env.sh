@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#File Created by Jerry Pierre and Edited by Karl Parks
-#sudo chmod 775 build_pi_thermal_app.sh
-#sudo ./build_pi_thermal_app.sh
+#File Created by Jerry Pierre and Edited by Karl Parks, Fox Chao
+#sudo chmod 775 setup_linux_env.sh
+#sudo ./setup_linux_env.sh
 
 install_system_updates(){
 
@@ -19,7 +19,7 @@ install_thermal_dependencies(){
     sudo apt-get install -y python3-pyqt5
     sudo apt-get install -y python3-h5py
     sudo apt-get install -y python3-psutil
-    sudo apt install python3-opencv
+    sudo apt-get install -y python3-opencv
     #sudo pip3 install opencv-contrib-python
     #git clone https://github.com/Itseez/opencv_contrib.git
     #cd opencv_contrib
