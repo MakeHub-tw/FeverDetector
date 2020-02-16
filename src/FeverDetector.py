@@ -201,7 +201,7 @@ def ktof(val):
 def ktoc(val):
     return round(((val - 27315) / 100.0), 2)
 
-def display_temperatureK(img, val_k, loc, color):
+def display_temperatureF(img, val_k, loc, color):
     val = ktof(val_k)
     cv2.putText(img,"{0:.1f} degF".format(val), loc, cv2.FONT_HERSHEY_SIMPLEX, 0.75, color, 2)
     x, y = loc
@@ -224,6 +224,7 @@ camState = 'not_recording'
 tiff_frame = 1
 maxVal = 0
 minVal = 0
+threshold = 36.0
 
 fileNum = 1
 @pyqtSlot(QImage)
@@ -266,9 +267,16 @@ def getFrame():
     img = cv2.LUT(raw_to_8bit(data), generate_colour_map())
     #display_temperature only works if cv2.resize is used
     #display_temperatureC(img, minVal, minLoc, (255, 0, 0)) #displays min temp at min temp location on image
-    display_temperatureC(img, maxVal, maxLoc, (0, 0, 255)) #displays max temp at max temp location on image
-    #display_temperatureK(img, minVal, (10,55), (255, 0, 0)) #display in top left corner the min temp
-    #display_temperatureK(img, maxVal, (10,25), (0, 0, 255)) #display in top left corner the max temp
+    if maxLoc[0] >= 600:
+        maxLoc = (maxLoc[0] - 40, maxLoc[1])
+    if maxLoc[1] >= 450:
+        maxLoc = (maxLoc[0], maxLoc[1] - 30)
+    if ktoc(maxVal) < threshold:
+        display_temperatureC(img, maxVal, maxLoc, (0, 255, 0)) #displays max temp at max temp location on image
+    else:
+        display_temperatureC(img, maxVal, maxLoc, (0, 0, 255)) #displays max temp at max temp location on image
+    #display_temperatureF(img, minVal, (10,55), (255, 0, 0)) #display in top left corner the min temp
+    #display_temperatureF(img, maxVal, (10,25), (0, 0, 255)) #display in top left corner the max temp
     return img
 
 def readTemp(unit, state):
@@ -338,8 +346,12 @@ class App(QMainWindow, Ui_MainWindow):
         self.stopRec.clicked.connect(self.stopRecAndSave)
         self.startRec.clicked.connect(self.displayRec)
         self.stopRec.clicked.connect(self.displayNotRec)
-        self.displayC.clicked.connect(self.dispCDef)
-        self.displayF.clicked.connect(self.dispFDef)
+#        self.displayC.clicked.connect(self.dispCDef)
+#        self.displayF.clicked.connect(self.dispFDef)
+        self.increaseT.clicked.connect(self.incThreshold)
+        self.decreaseT.clicked.connect(self.decThreshold)
+        self.thresholdEdit.setText(str(threshold))
+        self.thresholdEdit.textChanged.connect(self.setThreshold)
         self.runPost.clicked.connect(self.runPostScript)
         self.startStreamBut.clicked.connect(self.startThread)
         self.displayFrame.mousePressEvent = self.on_press
@@ -522,11 +534,24 @@ class App(QMainWindow, Ui_MainWindow):
     		else:
     			event.ignore()
 
+    def incThreshold(self):
+        global threshold
+        threshold = round(threshold + 0.1, 1)
+        self.thresholdEdit.setText(str(threshold))
+
+    def decThreshold(self):
+        global threshold
+        threshold = round(threshold - 0.1, 1)
+        self.thresholdEdit.setText(str(threshold))
+
+    def setThreshold(self):
+        global threshold
+        threshold = float(self.thresholdEdit.text())
 
     def runPostScript(self):
     	try:
     		def thread_second():
-    	    		call(["python3", postScriptFileName])
+    		    call(["python3", postScriptFileName])
     		processThread = threading.Thread(target=thread_second)  # <- note extra ','
     		processThread.start()
     	except:

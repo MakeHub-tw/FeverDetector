@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1097</width>
-    <height>745</height>
+    <height>795</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -142,6 +142,86 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="increaseT">
+          <property name="text">
+           <string>Inc. Threshold</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="thresholdEdit">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="alignment">
+          <set>Qt::AlignRight</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_thresholdC">
+          <property name="text">
+           <string> C</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="decreaseT">
+          <property name="text">
+           <string>Dec. Threshold</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="timeStatus">
+        <property name="text">
+         <string>Time/Date</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="cursorTempLabel">
+        <property name="text">
+         <string>Cursor Temp (On Mouse Click)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="maxTempLabel">
+        <property name="text">
+         <string>Max Temperature</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="minTempLabel">
+        <property name="text">
+         <string>Min Temperature</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="storageLabel">
+        <property name="text">
+         <string>Storage</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="filePathBut">
+        <property name="text">
+         <string>Select File Path</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <widget class="QLabel" name="label_3">
@@ -161,13 +241,6 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="filePathBut">
-        <property name="text">
-         <string>Select File Path</string>
-        </property>
-       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
@@ -208,59 +281,6 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QPushButton" name="displayC">
-          <property name="text">
-           <string>Display Celsius</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="displayF">
-          <property name="text">
-           <string>Display Fahrenheit</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QLabel" name="timeStatus">
-        <property name="text">
-         <string>Time/Date</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="cursorTempLabel">
-        <property name="text">
-         <string>Cursor Temp (On Mouse Click)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="maxTempLabel">
-        <property name="text">
-         <string>Max Temperature</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="minTempLabel">
-        <property name="text">
-         <string>Min Temperature</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="storageLabel">
-        <property name="text">
-         <string>Storage</string>
-        </property>
-       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="runPost">
