@@ -2,6 +2,8 @@
 
 Detect people who have fevers with FLIR Lepton + PureThermal Smart I/O Module
 
+![Demo](images/demo.png)
+
 ## Hardware requirements
 
 
