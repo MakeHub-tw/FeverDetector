@@ -267,10 +267,12 @@ def getFrame():
     img = cv2.LUT(raw_to_8bit(data), generate_colour_map())
     #display_temperature only works if cv2.resize is used
     #display_temperatureC(img, minVal, minLoc, (255, 0, 0)) #displays min temp at min temp location on image
-    if maxLoc[0] >= 600:
+    if maxLoc[0] > 600:
+        # Move text left to keep it on screen
         maxLoc = (maxLoc[0] - 40, maxLoc[1])
-    if maxLoc[1] >= 450:
-        maxLoc = (maxLoc[0], maxLoc[1] - 30)
+    if maxLoc[1] < 20:
+        # Move text down to keep it on screen
+        maxLoc = (maxLoc[0], 20)
     if ktoc(maxVal) < threshold:
         display_temperatureC(img, maxVal, maxLoc, (0, 255, 0)) #displays max temp at max temp location on image
     else:
