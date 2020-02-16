@@ -144,9 +144,9 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="increaseT">
+         <widget class="QPushButton" name="decreaseT">
           <property name="text">
-           <string>Inc. Threshold</string>
+           <string>Dec. Threshold</string>
           </property>
          </widget>
         </item>
@@ -171,9 +171,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="decreaseT">
+         <widget class="QPushButton" name="increaseT">
           <property name="text">
-           <string>Dec. Threshold</string>
+           <string>Inc. Threshold</string>
           </property>
          </widget>
         </item>
